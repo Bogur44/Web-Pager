@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gymDiary</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header">
+        <h1>Gym<span1>Diary</span1><span>Diary</span></h1>
+        
+        <div class="windows">
+            <div class="bgHome bg"></div>
+            <div class="bgCalendar bg"></div>
+            <div class="bgProfile bg"></div>
+            <div class="bgAchievements bg"></div>
+            <img src="./images/home.png" class="home">
+            <img src="./images/calendar.png" class="calendar">
+            <img src="./images/profile.png" class="profile">
+            <img src="./images/achievement.png" class="achievements">
+        </div>
+    </div>
+    <div id="container">
+            <div class="musclePart1 muscle" >Chest</div>
+            <div class="musclePart2 muscle" >Back</div>
+            <div class="musclePart3 muscle" >Biceps</div>
+            <div class="musclePart4 muscle" >Triceps</div>
+            <div class="musclePart5 muscle" >Delts</div>
+            <div class="musclePart6 muscle" >Traps</div>
+            <div class="musclePart7 muscle" >Legs</div>
+            <div class="musclePart8 muscle" >Calves</div>
+    </div>
+<div id="menu-bg"></div>
+<script>
+    const middle = document.querySelector('.middle');
+    let array = [''];
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+document.querySelector('h1').onmouseover = event => {
+    for(let i = 10; i < innerText.length - 1; i++ ){
+    event.target.innerText = event.target.innerText.split('')
+    .map(letter => letters[Math.floor(Math.random() * 26)])
+    .join('');
+    }
+}
+
+function chest(){
+    let muscle = 'chest';
+    imgSrc = './images/chest.jpeg';
+    addMuscle(muscle);
+}
+function back(){
+    let muscle = 'back';
+    imgSrc = './images/back.avif'
+    addMuscle(muscle);
+}
+
+    function addMuscle(muscle){
+        if(array.includes(muscle) === false){
+            const image = document.createElement('img')
+            if(muscle === 'chest'){
+                imgSrc = './images/chest.jpeg'
+            }
+            else if(muscle === 'back'){
+                imgSrc = './images/back.avif'
+            }
+            image.src = imgSrc;
+            middle.appendChild(image);
+            
+            array += muscle;
+            console.log(array)
+        }
+    }
+
+</script>
+
+</body>
+</html>

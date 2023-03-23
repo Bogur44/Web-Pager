@@ -1,0 +1,237 @@
+body{
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+#header{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    height: 100vh;
+    padding: 10px;
+    background-color: rgb(15, 14, 14);
+    color: white;
+    z-index: 2;
+}
+
+.windows{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+#header img{
+    width: 50px;
+    border-radius: 50px ;
+    padding: 10px;
+}
+#header h1{
+    animation: scaleUp 1s ease;
+}
+.home{
+background-color: #2b93b9;
+animation: scaleUp 1s ease;
+position: relative;
+}
+
+.calendar{
+background-color: #34BE82;
+animation: scaleUp 1s ease;
+position: relative;
+}
+.profile{
+background-color: #2FDD92;
+animation: scaleUp 1s ease;
+position: relative;
+}
+
+.achievements{
+background-color: #F2F013;
+animation: scaleUp 1s ease;
+position: relative;
+}
+.windows img{
+    transition: transform 0.3s ;
+}
+.windows img:hover{
+    transform: scale(1.2);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.bg{
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    position: absolute;
+    animation: scaleUp 1s ease;
+    filter: blur(7px);
+    transition: transform 0.3s ;
+}
+.bgHome{
+    background-color: #2b93b9;
+}
+.bgCalendar{
+    margin-top: 90px;
+    background-color: #34BE82;
+}
+.bgProfile{
+    margin-top: 180px;
+    background-color: #2FDD92;
+}
+.bgAchievements{
+    margin-top: 270px;
+    background-color: #F2F013;
+}
+@keyframes scaleUp {
+    from {
+        
+        transform: translateX(-100px);
+    }
+    to {
+        
+        transform: translateX(0);
+    }
+}
+
+#container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgb(0, 0, 0);
+    border-left: solid 4px #2b93b9;
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(to bottom right, black, rgb(36, 33, 33));
+}
+
+.muscle{
+    transition: transform 300ms cubic-bezier(.05,.23,.85,.95);
+    background-size: cover;
+    border-radius: 20px;
+    margin-left: 50px;
+    height: 350px;
+    width: 250px;
+    border: 2px solid white;
+    font-size: 26px;
+    box-shadow: 0.3em 0.3em 5px rgb(0, 0, 0);
+    z-index: 1;
+
+    text-align: start;
+    writing-mode:vertical-lr;
+    color: white;
+    position: absolute;
+}
+#container:hover > .musclePart1{
+    transform: translate(-105%, 10%) rotate(-35deg);
+}
+#container:hover > .musclePart2{
+    transform: translate(-75%,5%) rotate(-25deg);
+}
+#container:hover > .musclePart3{
+    transform: translate(-45%) rotate(-15deg);
+}
+#container:hover > .musclePart4{
+    transform: translate(-15%,-5%) rotate(-5deg);
+}
+#container:hover > .musclePart5{
+    transform: translate(15%, -5%) rotate(5deg);
+}
+#container:hover > .musclePart6{
+    transform: translate(45%) rotate(15deg);
+}
+#container:hover > .musclePart7{
+    transform: translate(75%,5%) rotate(25deg);
+}
+#container:hover > .musclePart8{
+    transform: translate(105%, 10%) rotate(35deg);
+}
+
+#container:hover > .muscle{
+    filter: brightness(60%);
+}
+#container:hover > .muscle:hover{
+    filter: brightness(100%);
+    z-index: 2;
+}
+
+
+
+.musclePart1{
+transform: translateX(-17.5%)rotate(-9deg);
+background-image: url(./images/arnold-chest.jpg);
+background-position: 50% 70%;
+writing-mode:vertical-lr;
+}
+.musclePart2{
+transform: translateX(-12.5%)rotate(-6deg);
+background-image: url(./images/betterback.webp);
+background-position: 50% 50%;
+}
+.musclePart3{
+transform: translateX(-7.5%)rotate(-3deg);
+background-image: url(./images/bicep.jpeg);
+background-position-x: center;
+}
+.musclePart4{
+transform: translateX(-2.5%);
+background-image: url(./images/triceps.jpg);
+background-position: 50% 50%;
+}
+.musclePart5{
+transform: translateX(2.5%)rotate(3deg);
+background-image: url(./images/delts.webp);
+background-position: 53% 50%;
+}
+.musclePart6{
+transform: translateX(7.5%)rotate(6deg);
+background-image: url(./images/traps.jpeg);
+background-position: 50% 50%;
+}
+.musclePart7{
+transform: translateX(12.5%)rotate(9deg);
+background-image: url(./images/legs.jpg);
+}
+.musclePart8{
+transform: translateX(17.5%)rotate(12deg);
+background-image: url(./images/calves.jpg);
+background-position: 45% 50%;
+}
+
+#menu-bg{
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to right, black, grey);
+    background-image: radial-gradient(
+        rgb(75, 73, 73) 5%,
+        transparent 9%
+    );
+    
+    background-position: 0 0;
+    background-size: 12vmin 12vmin;
+
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 0;
+}
+
+
+span1{
+    color: #2b93b9;
+}
+span2{
+    filter: blur(5px);
+    color: #2b93b9;
+    margin-left: -120px ;
+}
+span{
+    color: #2b93b9;
+    filter: blur(2px);
+    position: absolute;
+    margin-left: -79px;
+}
