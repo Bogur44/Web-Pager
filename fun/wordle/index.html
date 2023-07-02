@@ -25,9 +25,9 @@
         <button class="closePopup">
             <img src="./images/delete.png" alt="close">
         </button>
-        <div class="win">
+        <div class="win win-off">
             <header>
-                <h2>You got it!</h2>
+                <h2 class="winText">You got it!</h2>
                 <p>The word was <span class="winWord"></span></p>
             </header>
             <div class="infoBoard">
@@ -47,6 +47,14 @@
                         <div class="average">0</div>
                         <div>Average</div>
                     </div>
+            </div>
+            <div class="colorCount">
+                <div class="boxik green">
+                    <div class="greenNum"></div>
+                </div>
+                <div class="boxik orange">
+                    <div class="orangeNum"></div>
+                </div>
             </div>
             <div id="stats">
                 <h1>Statistics</h1>
@@ -100,8 +108,55 @@
                 <button onclick="playAgain()" class="playAgain">Play again</button>
             </div>
         </div>
+        <div class="login login-off">
+            <div class="header">
+                <h1>Login</h1>
+            </div>
+            <div class="inputs">
+                <div>
+                    <div class="emailImg"><img src="./images/email.png" alt=""></div>
+                    <input type="text" class="email" placeholder="Email">
+                </div>
+                <div>
+                    <div class="passwordImg"><img src="./images/padlock.png" alt=""></div>
+                    <input type="text" class="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="linkToRegister">
+                <p>Dont have an account yet? <p class=" link registerLink"> Register</p> </p>
+            </div>
+            <div class="loginButtons">
+                <button class="loginBtn">Login</button>
+            </div>
+
+        </div>
+        <div class="register register-off">
+                <div class="header">
+                    <h1>Register</h1>
+                </div>
+                <div class="inputs">
+                    <div>
+                        <div class="profileImg"><img src="./images/user (1).png" alt=""></div>
+                        <input type="text" class="name" placeholder="Name">
+                    </div>
+                    <div>
+                        <div class="emailImg"><img src="./images/email.png" alt=""></div>
+                        <input type="text" class="email" placeholder="Email">
+                    </div>
+                    <div>
+                        <div class="passwordImg"><img src="./images/padlock.png" alt=""></div>
+                        <input type="text" class="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="linkToLogin">
+                    <p>I already have an account.<p class=" link loginLink"> Login</p> </p>
+                </div>
+                <div class="registerButtons">
+                    <button class="loginBtn">Register</button>
+                </div>
+            </div>
     </div>
-    <div class="cheat"></div>
+    <div class="chea"></div>
     <div id="board">
         <div class="row1 row">
             <div class="row1box1 box"></div>
@@ -186,6 +241,7 @@
             </svg></button>
         </div></div>
 <script>
+    //consts
     const words = ["money", "power", "crane", "whale", "crane", "heard", "mouse", "micro", "state", "trunk", "drink", "speak", "start", "drunk",'abbey',
 "about",
 "above",
@@ -651,8 +707,76 @@
     const winWord = document.querySelector('.winWord')
     const popup = document.querySelector('.popup')
     const closePopup = document.querySelector('.closePopup')
+    const winText = document.querySelector('.winText')
+    const statsBtn = document.querySelector('.stats')
+    const profileBtn = document.querySelector('.menu')
+    const registerLink = document.querySelector('.registerLink')
+    const loginLink = document.querySelector('.loginLink')
 
+    //event listeners
+    registerLink.addEventListener('click', () => {
+        document.querySelector('.login').classList.add('login-off')
+        document.querySelector('.register').classList.remove('register-off')
+        popup.style.height = '550px'
+    })
+    loginLink.addEventListener('click', () => {
+        document.querySelector('.login').classList.remove('login-off')
+        document.querySelector('.register').classList.add('register-off')
+        popup.style.height = '500px'
+    })
 
+    statsBtn.addEventListener('click', () => {
+        popup.style.transitionDelay = '0s';
+        document.querySelector('.win').classList.remove('win-off')
+        document.querySelector('.login').classList.add('login-off')
+        document.querySelector('.register').classList.add('register-off')
+        popup.classList.add('popup-on')
+        popup.style.height = '600px'
+        writingOn = false
+    })
+    profileBtn.addEventListener('click', () => {
+        document.querySelector('.win').classList.add('win-off')
+        document.querySelector('.login').classList.remove('login-off')
+        popup.style.transitionDelay = '0s';
+        popup.style.height = '500px'
+        popup.classList.add('popup-on')
+        writingOn = false
+    })
+
+    //after closing popup it hides all contents in it and makes writing available
+    closePopup.addEventListener('click', () => {
+        popup.classList.remove('popup-on')
+        document.querySelector('.win').classList.add('win-off')
+        document.querySelector('.login').classList.add('login-off')
+        document.querySelector('.register').classList.add('register-off')
+        popup.style.transitionDelay = '0s'
+        popup.style.height = '600px'
+        writingOn = true
+    })
+
+    //all key presses and their functions
+    // for some reason clicking enter doesnt work after first guessed word
+    document.addEventListener('keydown', (event) => {
+        let ltr = event.key;
+        if(ltr !== 'Enter'){
+            for(let i = 0; i < letters.length; i++){
+                let letter = letters[i]
+        if(ltr === letter && boxNum < 6){
+                writeLetter(ltr)
+            }
+        }
+    }
+        if(ltr === 'Backspace'){
+                deleteLetter()
+            }
+    },)
+    document.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter'){
+            enterWord()
+        }
+    })
+
+    //variables
     let totalAttempts = 0
     let lost = 0
     let percentil = 0;
@@ -667,60 +791,43 @@
     let count = 0;
     let rowNum = 1
     let boxNum = 1
+    let orange = 0
+    let green = 0
     let exactBox = 'row' + rowNum + 'box' + boxNum;
     let letters = ['q','w','e','r','t','z','u','i','o','p','a','s','d','f','g','h','j','k','l','y','x','c','v','b','n','m']
 
-function playAgain(){
-    popup.classList.remove('popup-on')
-    rowNum = 7
-    for(let i = 1; i <= 6; i++){
-        rowNum--
-        for(let j = 1; j <= 5; j++){
-            const box = document.querySelector('.row' + rowNum + 'box' + j);
-            box.classList.remove('green', 'orange','empty', 'filled');
-            box.removeAttribute('id', 'done')
-            box.textContent = '';
-        }
-    }
-    for(let i = 1; i <= 3; i++){
-        const keyboardRow = document.getElementById('keyboard-row' + i)
-        var children = keyboardRow.children
-        for(let i = 0; i < children.length; i++){
-            var key = children[i]
-            key.classList.remove('green', 'orange', 'empty')
-        }
-    }
-    writingOn = true
-    result = generateWord(words)
-    cheat.textContent = result
-    count = 0
-    console.log(rowNum)
-    console.log(boxNum)
-}
 
-    closePopup.addEventListener('click', () => {
+    function playAgain(){
+        popup.style.transitionDelay = '0s';
         popup.classList.remove('popup-on')
-    })
 
-    document.addEventListener('keydown', (event) => {
-        let ltr = event.key;
-        const box = document.querySelector('.row' + rowNum + 'box'+ boxNum)
-        if(ltr === 'Enter'){
-                enterWord()
-            }
-        else if(ltr !== 'Enter'){
-            for(let i = 0; i < letters.length; i++){
-                let letter = letters[i]
-        if(ltr === letter && boxNum < 6){
-                writeLetter(ltr)
+        for(let i = 6; i >= 1; i--){
+            const rowBox = document.querySelector('.row' + i + 'box'+ boxNum)
+            rowNum = i
+            for(let j = 1; j <= 5; j++){
+                const box = document.querySelector('.row' + rowNum + 'box'+ j)
+                box.classList.remove('green', 'orange','empty', 'filled')
+                box.removeAttribute('id', 'done')
+                box.textContent = ''
             }
         }
-    }
-        if(ltr === 'Backspace'){
-                deleteLetter()
+        for(let i = 1; i <= 3; i++){
+            const keyRow = document.querySelector('.keyboard-row' + i)
+            let children = keyRow.children
+            for(let i = 1; i < children.length; i++){
+                var eachChild = children[i]
+                eachChild.classList.remove('green', 'orange','empty', 'filled')
             }
-    },)
+        }
+        result = generateWord(words)
+        cheat.textContent = result
+        writingOn = true
+    }
+    
 
+    //adds 4 stats 
+    //changes lines according to their length so that the largest number is 100% and others are just percentages of it
+    //average is made by adding all rowNums of guessed tries and dividing by total attempts
     function addStats(){
         const winLine = document.querySelector('.bar' + rowNum)
         let averigicalAmount = 0
@@ -742,6 +849,14 @@ function playAgain(){
         document.querySelector('.percentil').textContent = Math.round(((1 - (lost / totalAttempts)) * 100).toFixed(2))
         document.querySelector('.streak').textContent = streak;
         document.querySelector('.average').textContent = Math.round(average.toFixed(1) * 100) / 100
+    }
+    //adds stats as normal except doesnt change average
+    function addLosingStats(){
+        const winLine = document.querySelector('.bar' + rowNum)
+        totalAttempts += 1
+        document.querySelector('.total').textContent = totalAttempts
+        document.querySelector('.percentil').textContent = Math.round(((1 - (lost / totalAttempts)) * 100).toFixed(2))
+        document.querySelector('.streak').textContent = streak;
     }
 
     function writeLetter(ltr){
@@ -788,6 +903,7 @@ function playAgain(){
                         const box = document.querySelector('.row' + rowNum + 'box' + (i + 1))
                         box.classList.add('orange')
                         keyBox.classList.add('orange')
+                        orange++
                     }
                     if(!origArr.includes(playerLtr)){
                         const box = document.querySelector('.row' + rowNum + 'box'+ (i + 1))
@@ -801,6 +917,8 @@ function playAgain(){
                         keyBox.classList.remove('orange')
                         keyBox.classList.add('green')
                         box.setAttribute('id', 'done')
+                        green++
+                        orange--
                     }
                     checkWin(count)
                     console.log(count)
@@ -825,20 +943,31 @@ function checkWin(count){
             writingOn = false
             winWord.textContent = result.toUpperCase()
             popup.classList.add('popup-on')
+            document.querySelector('.win').classList.remove('win-off')
+            document.querySelector('.login').classList.add('login-off')
+            document.querySelector('.winWord').style.color = 'green'
+            popup.style.transitionDelay = '1s';
             score = 0
             addStats()
         }
     }
-    else if(rowNum === 6 && score <= 4 && boxNum > 4){
+    else if(rowNum === 6 && score <= 4 && count >= 4){
         writingOn = false
         winWord.textContent = result.toUpperCase()
         popup.classList.add('popup-on')
+        popup.style.transitionDelay = '1s';
+        document.querySelector('.win').classList.remove('win-off')
+        document.querySelector('.login').classList.add('login-off')
+        document.querySelector('.winWord').style.color = 'red'
         score = 0
         rowNum = 1
         streak = 0
         lost++
-        addStats()
+        winText.textContent = 'Not this time'
+        addLosingStats()
     }
+    document.querySelector('.greenNum').textContent = green
+    document.querySelector('.orangeNum').textContent = orange
 }
 
     function generateWord(arr){

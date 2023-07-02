@@ -35,16 +35,20 @@ body{
 .stats{
     width: 25px;
     height: 25px;
+    cursor: grab;
 }
 .stats img{
     max-width: 25px;
 }
 .settings img{
     max-width: 25px;
+    cursor: grab;
 }
 .menu{
     align-self: center;
     margin-left: 20px;
+    width: 25px;
+    cursor: grab;
 }
 #board{
     width: 300px;
@@ -140,9 +144,9 @@ body{
     transition: transform .5s ease-in-out;
     transform: scale(0);
     padding: 0;
+    overflow: hidden;
 }
 .popup-on{
-    transition-delay: 1s;
     transform: scale(1);
 }
 .popup .win{
@@ -155,8 +159,11 @@ body{
     width: 84%;
     height: 95%;
     padding: 40px;
-    display: flex;
-   justify-content: space-between;
+    justify-content: space-between;
+}
+.win-off{
+    transition-duration: .3s;
+    transform: translate(600px);
 }
 .win header{
     text-align: center;
@@ -270,4 +277,106 @@ body{
 .average{
     font-size: 36px;
     font-weight: 600;
+}
+.colorCount{
+    position: absolute;
+    left: 10px;
+    top: 47%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.boxik{
+    width: 15px;
+    height: 15px;
+}
+.greenNum,
+.orangeNum{
+    margin-left: 20px;
+}
+.login{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    margin-top: -40px;
+    width: 84%;
+    height: 95%;
+    padding: 40px;
+    justify-content: center;
+    gap: 20px;
+    transition-duration: .3s;
+
+}
+.login-off{
+    transition-duration: .3s;
+    transform: translate(-600px);
+}
+.login .header{
+    margin-top: 20px;
+}
+.login h1{
+    font-size: 44px;
+}
+.name,
+.email,
+.password{
+    border: none;
+    border-radius: 20px;
+    height: 50px;
+    width: 300px;
+    font-size: 24px;
+    padding: 10px;
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.inputs img{
+    width: 25px;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 55%;
+}
+.loginBtn,
+.registerBtn{
+    width: 120px;
+    height: 50px;
+    border: 2px solid;
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 20px;
+}
+.linkToLogin,
+.linkToRegister{
+    display: flex;
+}
+.link{
+    color: rgb(98, 98, 151);
+    margin-left: 5px;
+}
+.link:hover{
+    color: rgb(255, 180, 180);
+    cursor: pointer;
+}
+
+.register{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    margin-top: -40px;
+    width: 84%;
+    height: 95%;
+    padding: 40px;
+    justify-content: center;
+    gap: 20px;
+    transition-duration: .3s;
+}
+.register-off{
+    transition-duration: .3s;
+    transform: translate(600px);
 }
