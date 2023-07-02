@@ -156,7 +156,11 @@
                 </div>
             </div>
     </div>
-    <div class="chea"></div>
+    <div class="cheats">
+        <button onclick="showCheat()" class="applyCheats">Cheats On</button>
+        <div class="cheat hidden"></div>
+        <button onclick="hideCheat()" class="removeCheat">Cheats Off</button>
+    </div>
     <div id="board">
         <div class="row1 row">
             <div class="row1box1 box"></div>
@@ -824,6 +828,30 @@
         writingOn = true
     }
     
+    function hideCheat(){
+        document.querySelector('.cheat').classList.add('hidden')
+        document.querySelector('.removeCheat').style.border = '2px solid black'
+        document.querySelector('.removeCheat').style.transform = 'scale(1.2)'
+        document.querySelector('.removeCheat').style.background = 'rgb(99, 2, 2)'
+        document.querySelector('.removeCheat').style.color = 'white'
+
+        document.querySelector('.applyCheats').style.border = 'none'
+        document.querySelector('.applyCheats').style.transform = 'scale(1)'
+        document.querySelector('.applyCheats').style.background = 'transparent'
+
+    }
+    function showCheat(){
+        document.querySelector('.cheat').classList.remove('hidden')
+        document.querySelector('.applyCheats').style.border = '2px solid black'
+        document.querySelector('.applyCheats').style.transform = 'scale(1.2)'
+        document.querySelector('.applyCheats').style.background = 'green'
+        document.querySelector('.applyCheats').style.color = 'white'
+
+        document.querySelector('.removeCheat').style.border = 'none'
+        document.querySelector('.removeCheat').style.transform = 'scale(1)'
+        document.querySelector('.removeCheat').style.background = 'transparent'
+
+    }
 
     //adds 4 stats 
     //changes lines according to their length so that the largest number is 100% and others are just percentages of it

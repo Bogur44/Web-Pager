@@ -373,10 +373,41 @@ body{
     height: 95%;
     padding: 40px;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     transition-duration: .3s;
 }
 .register-off{
     transition-duration: .3s;
     transform: translate(600px);
+}
+.register h1{
+    font-size: 40px;
+}
+.cheats{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.applyCheats{
+    border: none;
+    background: transparent;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: .4s;
+}
+.removeCheat{
+    border: none;
+    background: transparent;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: .4s;
+    background: rgb(99, 2, 2);
+    border: 2px solid black;
+    transform: scale(1.2);
+
+}
+.hidden{
+    transform: scale(0);
 }
